@@ -1,0 +1,9 @@
+# .gitignore
+__pycache__/
+*.pyc
+.DS_Store
+.env
+/models/
+/data/*.csv
+*.pkl
+!data/sample.csv  # 例外：小样本数据可提交
