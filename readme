@@ -1,0 +1,30 @@
+构建并运行 Docker 容器
+# 1. 构建镜像
+docker build -t house-price-api .
+# 2. 运行容器
+docker run -d -p 8000:8000 --name house-price-container house-price-api
+# 3. 查看日志
+docker logs house-price-container
+
+测试 API
+curl -X POST "http://localhost:8000/predict" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "longitude": -122.23,
+           "latitude": 37.88,
+           "housing_median_age": 15,
+           "total_rooms": 5612,
+           "total_bedrooms": 1283,
+           "population": 1015,
+           "households": 478,
+           "median_income": 1.4936,
+           "ocean_proximity": "<1H OCEAN"
+         }'
+
+验证 Docker 镜像
+# 查看镜像
+docker images | grep house-price
+# 查看运行中的容器
+docker ps
+# 进入容器（可选）
+docker exec -it house-price-container /bin/bash

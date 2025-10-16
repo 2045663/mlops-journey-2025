@@ -2,8 +2,7 @@
 __pycache__/
 *.pyc
 .DS_Store
-.env
+.venv
+.idea
 /models/
-/data/*.csv
 *.pkl
-!data/sample.csv  # 例外：小样本数据可提交
