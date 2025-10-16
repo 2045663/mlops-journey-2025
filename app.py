@@ -19,7 +19,7 @@ class HouseFeatures(BaseModel):
     population: float
     households: float
     median_income: float
-    median_house_value: float
+    # median_house_value: float
     ocean_proximity: str   # 例如 '<1H OCEAN'
 
 @app.post("/predict")
