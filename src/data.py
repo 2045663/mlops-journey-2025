@@ -35,10 +35,29 @@ def preprocess_data(df, test_size=0.2, random_state=42):
     x_categorical_encoded = encoder.fit_transform(x_categorical)
     # 获取 one-hot 编码后的列名
     encoded_columns = encoder.get_feature_names_out(categorical_features)
+    # 数据格式如下：
+    # 0,ocean_proximity_<1H OCEAN
+    # 1,ocean_proximity_INLAND
+    # 2,ocean_proximity_ISLAND
+    # 3,ocean_proximity_NEAR BAY
+    # 4,ocean_proximity_NEAR OCEAN
+
     # 转换为 DataFrame，便于拼接
     x_categorical_df = pd.DataFrame(x_categorical_encoded, columns=encoded_columns, index=x.index)
+    # 数据格式如下：
+    #    ocean_proximity_<1H OCEAN` ocean_proximity_INLAND``ocean_proximity_ISLAND  ocean_proximity_NEAR BAY  ocean_proximity_NEAR OCEAN
+    # 0             0                       0                           1                   0                       0
+    # 1             0                       0                           0                   1                       0
+    # 2             0                       0                           1                   0                       0
+    # 3             1                       0                           0                   0                       0
+
     # 拼接数值特征和编码后的类别特征
     x_encoded = pd.concat([x_numerical, x_categorical_df], axis=1)
+    # 数据格式如下：
+    #    longitude   latitude  ... ocean_proximity_<1H OCEAN` ocean_proximity_INLAND``ocean_proximity_ISLAND  ocean_proximity_NEAR BAY  ocean_proximity_NEAR OCEAN
+    # 0   -122.23    37.88     ...           0                           1                   0                       0                        0
+    # 1   -122.23    37.88     ...           0                           0                   1                      0                        0
+    # 2   -122.23    37.88     ...           0                           1                   0                       0                        0
 
     # 划分数据集
     x_train, x_test, y_train, y_test = train_test_split(
