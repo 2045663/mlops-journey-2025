@@ -28,3 +28,15 @@ docker images | grep house-price
 docker ps
 # 进入容器（可选）
 docker exec -it house-price-container /bin/bash
+
+
+# 1、创建目录
+mkdir -p experiments
+# 2、启动 MLflow UI
+mlflow server --host 127.0.0.1 --port 8080
+# 3、运训训练脚本 
+python mlflow_tracking.py
+# 4、查看实验记录
+打开浏览器访问 http://localhost:8080，查看实验记录
+多次运行，对比不同参数
+修改 n_estimators 和 max_depth，重新运行脚本，观察 UI 中的对比视图
