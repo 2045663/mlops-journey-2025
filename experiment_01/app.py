@@ -4,10 +4,10 @@ import joblib
 from pydantic import BaseModel
 
 # 加载模型 和 scaler
-model = joblib.load("models/rf_model.pkl")
-encoder = joblib.load("models/ocean_encoder.pkl")
-scaler = joblib.load("models/scaler.pkl")
-expected_columns = joblib.load("models/feature_columns.pkl")
+model = joblib.load("experiment_01/models/rf_model.pkl")
+encoder = joblib.load("experiment_01/models/ocean_encoder.pkl")
+scaler = joblib.load("experiment_01/models/scaler.pkl")
+expected_columns = joblib.load("experiment_01/models/feature_columns.pkl")
 app = FastAPI(title="House Price Prediction")
 
 class HouseFeatures(BaseModel):

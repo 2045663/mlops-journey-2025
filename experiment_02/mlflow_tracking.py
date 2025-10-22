@@ -7,7 +7,8 @@ from mlflow.entities import ViewType
 import numpy as np
 
 # 设置实验名称
-TRACKING_URI = "http://127.0.0.1:8080"
+# TRACKING_URI = "http://127.0.0.1:8080"
+TRACKING_URI = "sqlite:///experiment_02/mlflow_tracking/mlflow.db"
 EXPERIMENT_NAME = "housing-price-experiment"
 mlflow.set_tracking_uri(TRACKING_URI)
 mlflow.set_experiment(EXPERIMENT_NAME)

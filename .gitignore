@@ -3,8 +3,12 @@ __pycache__/
 *.pyc
 .DS_Store
 .venv
-.idea
-/models/
+.idea*
 *.pkl
-/mlartifacts/
-/mlruns/
+/experiment_01/models/
+/experiment_02/mlartifacts/
+/experiment_02/mlruns/
+/experiment_02/mlflow_tracking/
+/experiment_03/data/processed/
+/experiment_03/models/
+/experiment_03/reports/
