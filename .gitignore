@@ -12,3 +12,5 @@ __pycache__/
 /experiment_03/data/processed/
 /experiment_03/models/
 /experiment_03/reports/
+/experiment_03/mlflow_tracking/
+/experiment_03/mlruns/
