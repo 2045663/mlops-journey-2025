@@ -60,7 +60,14 @@ mlops-journey-2025/
 
 1. 进入目录： cd experiment_03
 2. 在 experiment_03 目录下创建 mlflow_tracking 目录： mkdir mlflow_tracking
-3. 执行命令：mlflow ui --backend-store-uri sqlite:///mlflow_tracking/mlflow.db
+3. 执行命令：
+mlflow ui --backend-store-uri sqlite:///mlflow_tracking/mlflow.db
+或
+mlflow server \
+    --backend-store-uri sqlite:///mlflow_tracking/mlflow.db \
+    --default-artifact-root file:///path/to/artifacts \  # 或 s3://my-bucket/mlflow
+    --host 0.0.0.0 \
+    --port 5000
 使用 Gitbash 进入命令行 执行 make命令：
 (1)默认参数训练 + 评估：make all
 (2)指定参数训练： make model N_ESTIMATORS=120 MAX_DEPTH=6
@@ -90,3 +97,8 @@ make all N_ESTIMATORS=60 MAX_DEPTH=4 SKIP_DATA=true
 
 多参数扫描训练
 make sweep SKIP_DATA=true SKIP_FEATURES=true
+
+
+
+运行app:
+uvicorn app_fast:app --host 0.0.0.0 --port 9000

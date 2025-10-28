@@ -44,11 +44,17 @@ def train_model(n_estimators=100, max_depth=5):
     print(f"✅ 模型已保存至 models/{model_filename}")
 
     with mlflow.start_run(run_name=RUN_NAME) as run: # 获取 run_id，便于后续关联
-        # 记录模型训练参数
+        # 1.记录模型训练参数
         mlflow.log_params(params)
+
+        # 2.记录其他关键资产作为 artifacts
+        mlflow.log_artifact("models/ocean_encoder.pkl")
+        mlflow.log_artifact("models/scaler.pkl")
+        mlflow.log_artifact("models/feature_columns.pkl")
+
         # 调用 infer_signature 函数，生产签名对象
         signature = infer_signature(x_train, model.predict(x_train))
-        # 记录模型
+        # 3.记录模型
         artifact_path = f"rf_housing_price_n{n_estimators}_d{max_depth}"  # 当前实验 run 记录列表中Models字段值
         mlflow.sklearn.log_model(
             model, name=artifact_path, signature=signature, input_example=x_train[:1]  # 提供一个输入样例
