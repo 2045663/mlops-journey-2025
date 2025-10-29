@@ -7,8 +7,8 @@ from mlflow.entities import ViewType
 import numpy as np
 
 # 设置实验名称
-# TRACKING_URI = "http://127.0.0.1:8080"
-TRACKING_URI = "sqlite:///experiment_02/mlflow_tracking/mlflow.db"
+# TRACKING_URI = "sqlite:///experiment_02/mlflow_tracking/mlflow.db"
+TRACKING_URI = "http://127.0.0.1:5000"
 EXPERIMENT_NAME = "housing-price-experiment"
 mlflow.set_tracking_uri(TRACKING_URI)
 mlflow.set_experiment(EXPERIMENT_NAME)
@@ -22,8 +22,8 @@ df = data.load_data()
 x_train, x_test, y_train, y_test = data.preprocess_data(df)
 
 params = {
-    "n_estimators":140,
-    "max_depth":8,
+    "n_estimators":150,
+    "max_depth":9,
     "min_samples_split":10,
     "min_samples_leaf":4,
     "bootstrap":True,
@@ -64,15 +64,7 @@ with mlflow.start_run(run_name=run_name) as run:
 # ===== 第二步：搜索最佳模型并注册 =====
 import time
 time.sleep(10)
-# 获取最佳模型
-# mlflow.search_logged_models() 是用来搜索已经注册过的模型版本 ❌
-# top_models = mlflow.search_logged_models(
-#     experiment_ids=["1", "2"],
-#     filter_string="metrics.mse < 62000 and metrics.r2 > 0.71'",
-#     order_by=[{"field_name": "metrics.mse", "ascending": True}],
-#     max_results=5,
-# )
-# 使用 mlflow.search_runs() 来查找表现最好的 run_id ✅
+# 获取最佳模型: mlflow.search_runs() 来查找表现最好的 run_id ✅
 best_model = mlflow.search_runs(
     experiment_names = [EXPERIMENT_NAME],
     run_view_type = ViewType.ACTIVE_ONLY,

@@ -9,7 +9,7 @@ def load_data():
     """加载数据集"""
     # housing = fetch_california_housing(as_frame=True)
     # df = housing.frame  # 自动包含 target 列
-    df = pd.read_csv("experiment_01/data/housing.csv")
+    df = pd.read_csv("data/housing.csv")
     return df
 
 def preprocess_data(df, test_size=0.2, random_state=42):
@@ -70,10 +70,10 @@ def preprocess_data(df, test_size=0.2, random_state=42):
     x_test_scaled = scaler.transform(x_test)
 
     # 保存训练时的特征列顺序
-    os.makedirs("experiment_01/models", exist_ok=True)
-    joblib.dump(encoder, "experiment_01/models/ocean_encoder.pkl")
-    joblib.dump(scaler, "experiment_01/models/scaler.pkl")
-    joblib.dump(x_train.columns.tolist(), "experiment_01/models/feature_columns.pkl")
+    os.makedirs("models", exist_ok=True)
+    joblib.dump(encoder, "models/ocean_encoder.pkl")
+    joblib.dump(scaler, "models/scaler.pkl")
+    joblib.dump(x_train.columns.tolist(), "models/feature_columns.pkl")
 
     return x_train_scaled, x_test_scaled, y_train, y_test
 

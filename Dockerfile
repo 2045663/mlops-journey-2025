@@ -16,11 +16,11 @@ RUN apt-get update && apt-install -y --no-install-recommends \
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 复制模型和代码
-COPY models/ models/
-COPY app.py .
+COPY experiment_03/models/ models/
+COPY experiment_03/src/app_fast.py .
 
 # 暴露端口
 EXPOSE 8000
 
 # 启动服务
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app_fast:app", "--host", "0.0.0.0", "--port", "9000"]
