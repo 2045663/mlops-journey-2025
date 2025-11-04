@@ -3,7 +3,6 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel
 import mlflow
-import mlflow.pyfunc
 from mlflow import MlflowClient
 from contextlib import asynccontextmanager
 
