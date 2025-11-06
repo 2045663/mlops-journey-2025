@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b56605cb-999b-44a1-a4b8-3a087065b915" name="更改" comment="提交调整后的文件">
-      <change afterPath="$PROJECT_DIR$/experiment_03/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/src/app_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/src/app_fast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/src/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/src/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/src/evaluate/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/src/evaluate/evaluate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/src/models/train_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/src/models/train_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/test/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/test/test_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,36 +57,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.app.executor": "Run",
-    "Python.app_fast.executor": "Debug",
-    "Python.build_features.executor": "Debug",
-    "Python.data.executor": "Debug",
-    "Python.make_dataset.executor": "Debug",
-    "Python.ml_test.executor": "Debug",
-    "Python.mlflow_tracking.executor": "Debug",
-    "Python.test_app_fast.executor": "Debug",
-    "Python.test_search.executor": "Debug",
-    "Python.train.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHELLCHECK.PATH": "C:\\Users\\tamir\\AppData\\Roaming\\JetBrains\\PyCharm2025.1\\plugins\\Shell Script\\shellcheck.exe",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "F:/workspace/mlops-journey-2025/experiment_03",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app_fast.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.build_features.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.data.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.make_dataset.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ml_test.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.mlflow_tracking.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.test_app_fast.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.test_search.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.train.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\tamir\\AppData\\Roaming\\JetBrains\\PyCharm2025.1\\plugins\\Shell Script\\shellcheck.exe&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/workspace/mlops-journey-2025/experiment_03&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\workspace\mlops-journey-2025\experiment_03" />
@@ -172,7 +162,8 @@
       <workItem from="1761699575760" duration="8611000" />
       <workItem from="1762219292505" duration="1473000" />
       <workItem from="1762220999084" duration="10563000" />
-      <workItem from="1762418230271" duration="6264000" />
+      <workItem from="1762418230271" duration="6493000" />
+      <workItem from="1762425026458" duration="305000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
