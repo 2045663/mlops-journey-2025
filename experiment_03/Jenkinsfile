@@ -18,45 +18,27 @@ pipeline {
         stage('Setup Virtual Environment') {
             steps {
                 // 在项目根目录创建虚拟环境并安装依赖
-                bat '''
-                    python -m venv venv
-                    venv\\Scripts\\activate.bat && ^
-                    pip install --upgrade pip && ^
-                    pip install -r requirements.txt && ^
-                    pip install pytest pytest-cov coverage flake8
-                '''
+                bat 'python -m venv venv && venv\\Scripts\\activate.bat && pip install --upgrade pip && pip install -r requirements.txt && pip install pytest pytest-cov coverage flake8'
             }
         }
 
         stage('Run Tests & Generate Coverage') {
             steps {
                 dir('experiment_03') {
-                    bat '''
-                        ..\\venv\\Scripts\\activate.bat && ^
-                        pytest test/ --cov=src --cov-report=xml:coverage.xml -v
-                    '''
+                    bat '..\\venv\\Scripts\\activate.bat && pytest test/ --cov=src --cov-report=xml:coverage.xml -v'
                 }
             }
         }
 
         stage('SonarQube Analysis') {
-            steps {
-                dir('experiment_03') {
-                    withSonarQubeEnv('SonarQube Local') {
-                        bat '''
-                            ..\\venv\\Scripts\\activate.bat && ^
-                            sonar-scanner ^
-                                /D:"sonar.projectKey=mlops-experiment-03" ^
-                                /D:"sonar.sources=src" ^
-                                /D:"sonar.tests=test" ^
-                                /D:"sonar.python.coverage.reportPaths=coverage.xml" ^
-                                /D:"sonar.qualitygate.wait=true" ^
-                                /D:"sonar.qualitygate.timeout=%SONAR_QUALITY_GATE_TIMEOUT%"
-                        '''
-                    }
-                }
-            }
-        }
+			steps {
+				dir('experiment_03') {
+					withSonarQubeEnv('SonarQube Local') {
+						bat '..\\venv\\Scripts\\activate.bat && sonar-scanner /D:"sonar.projectKey=mlops-experiment-03" /D:"sonar.sources=src" /D:"sonar.tests=test" /D:"sonar.python.coverage.reportPaths=coverage.xml" /D:"sonar.qualitygate.wait=true" /D:"sonar.qualitygate.timeout=%SONAR_QUALITY_GATE_TIMEOUT%"'
+					}
+				}
+			}
+		}
 
         stage('Quality Gate') {
             steps {
