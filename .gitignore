@@ -14,3 +14,6 @@ __pycache__/
 /experiment_03/reports/
 /experiment_03/mlflow_tracking/
 /experiment_03/mlruns/
+/experiment_03/mlartifacts/
+/experiment_03/.coverage
+/experiment_03/coverage.xml

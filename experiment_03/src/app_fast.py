@@ -15,7 +15,7 @@ from .utils.exceptions import validation_exception_handler, general_exception_ha
 # ======================================
 # 🔧 MLflow 配置
 # ======================================
-MLFLOW_TRACKING_URI = "http://localhost:5000"
+MLFLOW_TRACKING_URI = "http://localhost:5555"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 MODEL_NAME = "HousingPriceModel"
 client = MlflowClient()
@@ -160,3 +160,10 @@ def predict_price(
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+# ======================================
+# 🎉 根路由
+# ======================================
+@app.get("/")
+def root():
+    return {"message": "Welcome to House Price Prediction API"}

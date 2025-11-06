@@ -1,10 +1,10 @@
 构建并运行 Docker 容器
 1. 构建镜像: docker build -t house-price-api .
-2. 运行容器: docker run -d -p 9000:9000 --name house-price-container house-price-api
+2. 运行容器: docker run -d -p 6666:6666 --name house-price-container house-price-api
 3. 查看日志: docker logs house-price-container
 
 测试 API
-curl -X POST "http://localhost:9000/predict" \
+curl -X POST "http://localhost:6666/predict" \
      -H "Content-Type: application/json" \
      -d '{
            "longitude": -122.23,
@@ -33,10 +33,10 @@ experiment_02 实验：
 1.cd experiment_02
 2、创建目录: mkdir -p mlflow_tracking
 3、启动 MLflow UI:  
-   #mlflow server --host 127.0.0.1 --port 8080 
+   #mlflow server --host 127.0.0.1 --port 5555 
    mlflow ui --backend-store-uri sqlite:///mlflow_tracking/mlflow.db
 4、运训训练脚本: python mlflow_tracking.py
-5、查看实验记录: 打开浏览器访问 http://localhost:8080，查看实验记录
+5、查看实验记录: 打开浏览器访问 http://localhost:5555，查看实验记录
 6、多次运行，对比不同参数: 修改 n_estimators 和 max_depth，重新运行脚本，观察 UI 中的对比视图
 
 
@@ -77,7 +77,9 @@ mlops-journey-2025/
        --backend-store-uri sqlite:///mlflow_tracking/mlflow.db \
        --default-artifact-root file:///path/to/artifacts \  # 或 s3://my-bucket/mlflow
        --host 0.0.0.0 \
-       --port 5000
+       --port 5555
+   或  
+   mlflow server --host 0.0.0.0 --port 5555
 4. 使用 Gitbash 进入命令行 执行 make命令：
     (1)默认参数训练 + 评估：
         make features SKIP_DATA=true
@@ -94,12 +96,12 @@ mlops-journey-2025/
     (4)跳过 data 和 features（假设特征已存在）:
         make model SKIP_DATA=true SKIP_FEATURES=true
 4. 访问 MLflow 注册模型:
-    访问 http://localhost:5000/#/  
+    访问 http://localhost:5555/#/  
     注册模型：HousingPriceModel
     设置模型版本别名：production_v1
 5. 运行app:
     python main.py
-6. 打开chrome浏览器(其它浏览器可能无法打开 swagger ui)访问 http://localhost:9000/docs
+6. 打开chrome浏览器(其它浏览器可能无法打开 swagger ui)访问 http://localhost:7777/docs
    6.1. 点击右上角的 "Authorize" 按钮 
    6.2. 填写用户名和密码（用于获取 token） ,虽然你在代码中没有使用真实用户名密码，
       但 FastAPI 的 OAuth2 流程需要这些字段来触发 /token 接口。
@@ -110,7 +112,7 @@ mlops-journey-2025/
    6.4. 点击 "Authorize" 按钮
 
 或者通过postman测试：
-获取 Token：curl -X POST "http://localhost:8000/token"
+获取 Token：curl -X POST "http://localhost:7777/token"
 响应：
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxx",
@@ -125,7 +127,7 @@ mlops-journey-2025/
     此时请求会自动带上：Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxx
 
 或者通过postman测试：
-curl -X POST "http://localhost:8000/predict" \
+curl -X POST "http://localhost:7777/predict" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxx" \
      -d '{
@@ -136,3 +138,9 @@ curl -X POST "http://localhost:8000/predict" \
 
 添加 静态代码扫描
 pip install pytest pytest-cov coverage flake8
+
+
+执行单元测试
+1. 进入目录： cd experiment_03
+2. 启动MLflow ：mlflow server --host 0.0.0.0 --port 5555
+3. 执行测试：pytest test/ --cov=src --cov-report=xml:coverage.xml -v

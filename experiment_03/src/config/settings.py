@@ -5,8 +5,8 @@ from typing import List
 class Settings(BaseSettings):
     # 🌐 CORS 配置
     ALLOWED_ORIGINS: List[str] = [
-        "http://localhost:9000",
-        "http://127.0.0.1:9000"
+        "http://localhost:7777",
+        "http://127.0.0.1:7777"
     ]
 
     # 🔐 JWT 配置

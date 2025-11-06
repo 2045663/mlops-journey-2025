@@ -11,7 +11,7 @@ import json
 import os
 
 # 配置 MLflow
-TRACKING_URI = "sqlite:///mlflow_tracking/mlflow.db"
+TRACKING_URI = "http://localhost:5555"
 EXPERIMENT_NAME = "housing-price-experiment"
 RUN_NAME = "housing_price_rf_test"
 

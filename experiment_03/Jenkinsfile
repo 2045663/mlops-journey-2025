@@ -25,6 +25,7 @@ pipeline {
         stage('Run Tests & Generate Coverage') {
             steps {
                 dir('experiment_03') {
+                    // 需要启动MLflow
                     bat '..\\venv\\Scripts\\activate.bat && pytest test/ --cov=src --cov-report=xml:coverage.xml -v'
                 }
             }
