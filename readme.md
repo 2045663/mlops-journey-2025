@@ -42,12 +42,13 @@ experiment_02 实验：
 
 experiment_03 实验：
 项目目录结构如下：
+项目目录结构如下：
 mlops-journey-2025/
 ├── .venv/                    #虚拟环境
 ├── experiment_03/
 │	├── data/
-│	│   ├── raw/              # 原始数据
-│	│   └── processed/        # 处理后数据
+│	│   ├── raw/               # 原始数据
+│	│   └── processed/         # 处理后数据
 │	├── models/                # 训练好的模型
 │	├── reports/               # 评估报告
 │	├── src/
@@ -58,10 +59,13 @@ mlops-journey-2025/
 │	│   ├── models/
 │	│   │   └── train_model.py      # 模型训练
 │	│   └── evaluate/
-│	│       └── evaluate.py          # 模型评估
-│	│ 
-│	└── Makefile                      # 自动化脚本
-└─ requirements.txt                    # 依赖文件
+│	│       └── evaluate.py         # 模型评估
+│	├── test/
+│	│   └── test_api.py             # 接口测试文件
+│	├── sonar-project.properties    # sonar配置文件 
+│	├── Jenkinsfile                 # Jenkins配置文件
+│	└── Makefile                    # 自动化脚本
+└─ requirements.txt                 # 依赖文件
 
 1. 进入目录： cd experiment_03
    2. 在 experiment_03 目录下创建 mlflow_tracking 目录：
@@ -128,3 +132,7 @@ curl -X POST "http://localhost:8000/predict" \
   "longitude": -122.23,
   ...
 }'
+
+
+添加 静态代码扫描
+pip install pytest pytest-cov coverage flake8

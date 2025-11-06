@@ -1,0 +1,82 @@
+// experiment_03/Jenkinsfile
+
+pipeline {
+    agent any
+
+    tools {
+        python 'python3'  // 确保 Jenkins 节点上有名为 'python3' 的 Python 工具
+    }
+
+    environment {
+        SONAR_QUALITY_GATE_TIMEOUT = 300
+        PYTHONPATH = "${WORKSPACE}/experiment_03/src"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/2045663/mlops-journey-2025.git'
+            }
+        }
+
+        stage('Setup Virtual Environment') {
+            steps {
+                sh '''
+					python -m venv venv
+					source venv/bin/activate
+					pip install --upgrade pip
+					pip install -r ../requirements.txt
+					pip install pytest pytest-cov coverage flake8
+				'''
+            }
+        }
+
+        stage('Run Tests & Generate Coverage') {
+            steps {
+                dir('experiment_03') {
+                    sh '''
+                        source ../venv/bin/activate
+                        pytest test/ --cov=src --cov-report=xml:coverage.xml -v
+                    '''
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                dir('experiment_03') {
+                    withSonarQubeEnv('SonarQube Local') {
+                        sh '''
+                            source ../venv/bin/activate
+                            export PATH="$PATH:/usr/local/bin"
+                            sonar-scanner \
+                                -Dsonar.projectKey=mlops-experiment-03 \
+                                -Dsonar.sources=src \
+                                -Dsonar.tests=test \
+                                -Dsonar.python.coverage.reportPaths=coverage.xml \
+                                -Dsonar.qualitygate.wait=true \
+                                -Dsonar.qualitygate.timeout=${SONAR_QUALITY_GATE_TIMEOUT}
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ 构建与扫描成功！'
+        }
+        failure {
+            echo '❌ 构建或扫描失败！'
+        }
+    }
+}

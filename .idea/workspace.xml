@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b56605cb-999b-44a1-a4b8-3a087065b915" name="更改" comment="提交调整后的文件">
-      <change afterPath="$PROJECT_DIR$/experiment_03/sonar-project.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_03/src/app_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/src/app_fast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_03/test/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_03/test/test_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +164,7 @@
       <workItem from="1761613158763" duration="21624000" />
       <workItem from="1761699575760" duration="8611000" />
       <workItem from="1762219292505" duration="1473000" />
-      <workItem from="1762220999084" duration="7220000" />
+      <workItem from="1762220999084" duration="10563000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
