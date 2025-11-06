@@ -3,10 +3,6 @@
 pipeline {
     agent any
 
-    tools {
-        python 'python3'  // 确保 Jenkins 节点上有名为 'python3' 的 Python 工具
-    }
-
     environment {
         SONAR_QUALITY_GATE_TIMEOUT = 300
         PYTHONPATH = "${WORKSPACE}/experiment_03/src"
@@ -21,21 +17,22 @@ pipeline {
 
         stage('Setup Virtual Environment') {
             steps {
-                sh '''
-					python -m venv venv
-					source venv/bin/activate
-					pip install --upgrade pip
-					pip install -r ../requirements.txt
-					pip install pytest pytest-cov coverage flake8
-				'''
+                // 在项目根目录创建虚拟环境并安装依赖
+                bat '''
+                    python -m venv venv
+                    venv\\Scripts\\activate.bat && ^
+                    pip install --upgrade pip && ^
+                    pip install -r requirements.txt && ^
+                    pip install pytest pytest-cov coverage flake8
+                '''
             }
         }
 
         stage('Run Tests & Generate Coverage') {
             steps {
                 dir('experiment_03') {
-                    sh '''
-                        source ../venv/bin/activate
+                    bat '''
+                        ..\\venv\\Scripts\\activate.bat && ^
                         pytest test/ --cov=src --cov-report=xml:coverage.xml -v
                     '''
                 }
@@ -46,16 +43,15 @@ pipeline {
             steps {
                 dir('experiment_03') {
                     withSonarQubeEnv('SonarQube Local') {
-                        sh '''
-                            source ../venv/bin/activate
-                            export PATH="$PATH:/usr/local/bin"
-                            sonar-scanner \
-                                -Dsonar.projectKey=mlops-experiment-03 \
-                                -Dsonar.sources=src \
-                                -Dsonar.tests=test \
-                                -Dsonar.python.coverage.reportPaths=coverage.xml \
-                                -Dsonar.qualitygate.wait=true \
-                                -Dsonar.qualitygate.timeout=${SONAR_QUALITY_GATE_TIMEOUT}
+                        bat '''
+                            ..\\venv\\Scripts\\activate.bat && ^
+                            sonar-scanner ^
+                                /D:"sonar.projectKey=mlops-experiment-03" ^
+                                /D:"sonar.sources=src" ^
+                                /D:"sonar.tests=test" ^
+                                /D:"sonar.python.coverage.reportPaths=coverage.xml" ^
+                                /D:"sonar.qualitygate.wait=true" ^
+                                /D:"sonar.qualitygate.timeout=%SONAR_QUALITY_GATE_TIMEOUT%"
                         '''
                     }
                 }
