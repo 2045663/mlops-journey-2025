@@ -36,6 +36,7 @@ pipeline {
 				dir('experiment_03') {
 					withSonarQubeEnv('SonarQube Local') {
 						// 激活虚拟环境并运行 sonar-scanner（使用 properties 文件中的配置）
+						// 需要添加 -D"sonar.qualitygate.wait=true" -D"sonar.qualitygate.timeout=%SONAR_QUALITY_GATE_TIMEOUT%"  参数 否则 Quality Gate 这一步会被卡住
 						bat '..\\venv\\Scripts\\activate.bat && sonar-scanner -D"sonar.qualitygate.wait=true" -D"sonar.qualitygate.timeout=%SONAR_QUALITY_GATE_TIMEOUT%"'
 					}
 				}
